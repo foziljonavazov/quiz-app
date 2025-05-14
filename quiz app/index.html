@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="JavaScript va dasturlash bo'yicha testlar orqali bilimlaringizni sinab ko'ring.">
+  <meta name="keywords" content="quiz, test, JavaScript, dasturlash, HTML, CSS, veb dasturlash, frontend, backend">
+  <meta name="author" content="Foziljon Avazov">
+  <title>Quiz App</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="shortcut icon" href="./imgs/QuizApp_logo.png" type="image/x-icon">
+</head>
+
+<body>
+  <!-- REGISTRATION FORM -->
+  <div class="registration-form" id="registrationForm">
+    <img src="./imgs/quiz-app-logo2.png" alt="Quiz App Logo" class="logo">
+    <h2>Test topshirish uchun ma'lumotlaringizni kiriting</h2>
+    <div class="form-group">
+      <label for="userName">Ismingiz:</label>
+      <input type="text" id="userName" placeholder="Ismingizni kiriting" required>
+    </div>
+    <div class="form-group">
+      <label for="courseSelect">Kursni tanlang:</label>
+      <select id="courseSelect" required>
+        <option value="">Kursni tanlang</option>
+        <option value="frontend">Frontend dasturlash</option>
+        <option value="computer">Kompyuter savodxonligi</option>
+      </select>
+    </div>
+    <button id="startBtn">Testni boshlash</button>
+  </div>
+
+  <!-- TIMER -->
+  <div class="timer-container" id="timerContainer">
+    <div class="timer" id="timer">05:00</div>
+  </div>
+
+  <!-- SAVOLLAR -->
+  <div class="quiz-container">
+    <!-- FRONTEND QUESTIONS -->
+    <div class="course-questions" id="frontendQuestions">
+      <div class="test" id="frontend1">
+        <h3>JavaScriptda typeof null nima qiymat qaytaradi?</h3>
+        <div class="varianlar">
+          <button data-variant="A"><span>A) </span>"null"</button>
+          <button data-variant="B"><span>B) </span>"undefined"</button>
+          <button data-variant="C" data-correct="true"><span>C) </span>"object"</button>
+          <button data-variant="D"><span>D) </span>"function"</button>
+        </div>
+        <button class="nextBtn">Keyingisi</button>
+      </div>
+
+      <div class="test" id="frontend2">
+        <h3>let, const va var orasidagi asosiy farq nima?</h3>
+        <div class="varianlar">
+          <button data-variant="A" data-correct="true"><span>A) </span>var block scope'ga ega emas</button>
+          <button data-variant="B"><span>B) </span>let faqat funksiyalarda ishlaydi</button>
+          <button data-variant="C"><span>C) </span>const qiymatini o‘zgartirish mumkin</button>
+          <button data-variant="D"><span>D) </span>Barchasi bir xil ishlaydi</button>
+        </div>
+        <button class="nextBtn">Keyingisi</button>
+      </div>
+
+      <div class="test" id="frontend3">
+        <h3>Quyidagi kodda this nimani anglatadi? <br></h3>
+
+        <pre>
+          <code>
+function sayHello() {
+  console.log(this);
+}
+sayHello();
+      </code>
+    </pre>
+
+        <div class="varianlar">
+          <button data-variant="A" data-correct="true"><span>A) </span>Global window obyektini</button>
+          <button data-variant="B"><span>B) </span>null</button>
+          <button data-variant="C"><span>C) </span>undefined</button>
+          <button data-variant="D"><span>D) </span>sayHello funksiyasini</button>
+        </div>
+        <button class="nextBtn">Keyingisi</button>
+      </div>
+
+      <div class="test" id="frontend4">
+        <h3>=== operatori qanday ishlaydi?</h3>
+        <div class="varianlar">
+          <button data-variant="A"><span>A) </span>Faqat qiymatni solishtiradi</button>
+          <button data-variant="B" data-correct="true"><span>B) </span>Qiymat va tipni solishtiradi</button>
+          <button data-variant="C"><span>C) </span>Har doim true qaytaradi</button>
+          <button data-variant="D"><span>D) </span>Qiymatni raqamga o‘giradi</button>
+        </div>
+        <button class="nextBtn">Keyingisi</button>
+      </div>
+
+      <div class="test" id="frontend5">
+        <pre>
+            <code>
+const obj = { name: "Ali" }; 
+obj.name = "Vali"
+            </code>
+          </pre>
+        <h3> Bu ruxsat etilganmi?</h3>
+        <div class="varianlar">
+          <button data-variant="A"><span>A) </span>Yo‘q, xato beradi</button>
+          <button data-variant="B" data-correct="true"><span>B) </span>Ha, obyekt ichidagi qiymatni o‘zgartirish
+            mumkin</button>
+          <button data-variant="C"><span>C) </span>Faqat string bo‘lsa bo‘ladi</button>
+          <button data-variant="D"><span>D) </span>Obyektni let bilan e'lon qilish kerak</button>
+        </div>
+        <button class="nextBtn">Keyingisi</button>
+      </div>
+
+      <div class="test" id="frontend6">
+        <h3>setTimeout funksiyasi qanday turdagi API?</h3>
+        <div class="varianlar">
+          <button data-variant="A"><span>A) </span>Sync</button>
+          <button data-variant="B"><span>B) </span>DOM API</button>
+          <button data-variant="C" data-correct="true"><span>C) </span>Asinxron</button>
+          <button data-variant="D"><span>D) </span>JSON API</button>
+        </div>
+        <button class="nextBtn">Keyingisi</button>
+      </div>
+
+      <div class="test" id="frontend7">
+        <h3>Array.prototype.map() nima qiladi?</h3>
+        <div class="varianlar">
+          <button data-variant="A" data-correct="true"><span>A) </span>Har bir elementni o‘zgartirib yangi array
+            qaytaradi</button>
+          <button data-variant="B"><span>B) </span>Faqat toq elementlarni tanlaydi</button>
+          <button data-variant="C"><span>C) </span>O‘zgartiradi, lekin eski arrayni</button>
+          <button data-variant="D"><span>D) </span>HTML yaratadi</button>
+        </div>
+        <button class="nextBtn">Keyingisi</button>
+      </div>
+
+      <div class="test" id="frontend8">
+        <h3>== va === o‘rtasidagi farq nima?</h3>
+        <div class="varianlar">
+          <button data-variant="A"><span>A) </span>Farqi yo‘q</button>
+          <button data-variant="B"><span>B) </span>=== turini solishtirmaydi</button>
+          <button data-variant="C" data-correct="true"><span>C) </span>== tiplarni o‘zgartirib solishtiradi</button>
+          <button data-variant="D"><span>D) </span>== har doim false</button>
+        </div>
+        <button class="nextBtn">Keyingisi</button>
+      </div>
+
+      <div class="test" id="frontend9">
+        <h3>NaN === NaN nima natija beradi?</h3>
+        <div class="varianlar">
+          <button data-variant="A"><span>A) </span>true</button>
+          <button data-variant="B" data-correct="true"><span>B) </span>false</button>
+          <button data-variant="C"><span>C) </span>undefined</button>
+          <button data-variant="D"><span>D) </span>NaN</button>
+        </div>
+        <button class="nextBtn">Keyingisi</button>
+      </div>
+
+      <div class="test" id="frontend10">
+        <pre>
+          <code>
+const arr = [1, 2, 3];  
+arr.push(4); 
+          </code>
+        </pre>
+        <h3> Ruxsat etilganmi?</h3>
+        <div class="varianlar">
+          <button data-variant="A" data-correct="true"><span>A) </span>Ha</button>
+          <button data-variant="B"><span>B) </span>Yo‘q</button>
+          <button data-variant="C"><span>C) </span>Faqat letda</button>
+          <button data-variant="D"><span>D) </span>Error beradi</button>
+        </div>
+        <button class="nextBtn">Keyingisi</button>
+      </div>
+
+      <div class="test" id="frontend11">
+        <h3><span class="code">function greet(name = "Dunyo")</span> - bu nima deyiladi?</h3>
+        <div class="varianlar">
+          <button data-variant="A"><span>A) </span>Callback</button>
+          <button data-variant="B" data-correct="true"><span>B) </span>Default parametr</button>
+          <button data-variant="C"><span>C) </span>Arrow function</button>
+          <button data-variant="D"><span>D) </span>Rekursiya</button>
+        </div>
+        <button class="nextBtn">Keyingisi</button>
+      </div>
+
+      <div class="test" id="frontend12">
+        <h3>typeof [] natijasi nima bo‘ladi?</h3>
+        <div class="varianlar">
+          <button data-variant="A" data-correct="true"><span>A) </span>"object"</button>
+          <button data-variant="B"><span>B) </span>"array"</button>
+          <button data-variant="C"><span>C) </span>"function"</button>
+          <button data-variant="D"><span>D) </span>"undefined"</button>
+        </div>
+        <button class="nextBtn">Keyingisi</button>
+      </div>
+
+      <div class="test" id="frontend13">
+        <h3><span class="code">parseInt("08")</span> natijasi nima?</h3>
+        <div class="varianlar">
+          <button data-variant="A"><span>A) </span>0</button>
+          <button data-variant="B" data-correct="true"><span>B) </span>8</button>
+          <button data-variant="C"><span>C) </span>NaN</button>
+          <button data-variant="D"><span>D) </span>"08"</button>
+        </div>
+        <button class="nextBtn">Keyingisi</button>
+      </div>
+
+      <div class="test" id="frontend14">
+        <h3><span class="code">Object.keys({a:1, b:2})</span> nima qaytaradi?</h3>
+        <div class="varianlar">
+          <button data-variant="A"><span>A) </span>[1, 2]</button>
+          <button data-variant="B" data-correct="true"><span>B) </span>["a", "b"]</button>
+          <button data-variant="C"><span>C) </span>["1", "2"]</button>
+          <button data-variant="D"><span>D) </span>{a:1, b:2}</button>
+        </div>
+        <button class="nextBtn">Keyingisi</button>
+      </div>
+
+      <div class="test" id="frontend15">
+        <h3><span class="code">JSON.stringify({})"</span> natijasi nima?</h3>
+        <div class="varianlar">
+          <button data-variant="A"><span>A) </span>{"a":undefined}</button>
+          <button data-variant="B" data-correct="true"><span>B) </span>{}</button>
+          <button data-variant="C"><span>C) </span>null</button>
+          <button data-variant="D"><span>D) </span>"undefined"</button>
+        </div>
+        <button class="nextBtn">Keyingisi</button>
+      </div>
+
+      <div class="test" id="frontend16">
+        <h3>Math.max() funksiyasi nima qiladi?</h3>
+        <div class="varianlar">
+          <button data-variant="A"><span>A) </span>Eng kichik sonni topadi</button>
+          <button data-variant="B" data-correct="true"><span>B) </span>Eng katta sonni topadi</button>
+          <button data-variant="C"><span>C) </span>To‘plamdagi sonlarni qo‘shadi</button>
+          <button data-variant="D"><span>D) </span>Math obyekti yaratadi</button>
+        </div>
+        <button class="nextBtn">Keyingisi</button>
+      </div>
+
+      <div class="test" id="frontend17">
+        <h3><span class="code">isNaN("abc")</span> nima natija beradi?</h3>
+        <div class="varianlar">
+          <button data-variant="A" data-correct="true"><span>A) </span>true</button>
+          <button data-variant="B"><span>B) </span>false</button>
+          <button data-variant="C"><span>C) </span>null</button>
+          <button data-variant="D"><span>D) </span>"NaN"</button>
+        </div>
+        <button class="nextBtn">Keyingisi</button>
+      </div>
+
+      <div class="test" id="frontend18">
+        <pre>
+          <code>
+console.log(0.1 + 0.2 === 0.3); 
+          </code>
+        </pre>
+        <h3>Natijasi nima?</h3>
+        <div class="varianlar">
+          <button data-variant="A"><span>A) </span>true</button>
+          <button data-variant="B" data-correct="true"><span>B) </span>false</button>
+          <button data-variant="C"><span>C) </span>NaN</button>
+          <button data-variant="D"><span>D) </span>undefined</button>
+        </div>
+        <button class="nextBtn">Keyingisi</button>
+      </div>
+
+      <div class="test" id="frontend19">
+        <h3>[].length qiymati nima bo‘ladi?</h3>
+        <div class="varianlar">
+          <button data-variant="A"><span>A) </span>undefined</button>
+          <button data-variant="B"><span>B) </span>1</button>
+          <button data-variant="C" data-correct="true"><span>C) </span>0</button>
+          <button data-variant="D"><span>D) </span>NaN</button>
+        </div>
+        <button class="nextBtn">Keyingisi</button>
+      </div>
+
+      <div class="test" id="frontend20">
+        <h3><span class="code">Array.isArray([])</span> nima qaytaradi?</h3>
+        <div class="varianlar">
+          <button data-variant="A" data-correct="true"><span>A) </span>true</button>
+          <button data-variant="B"><span>B) </span>false</button>
+          <button data-variant="C"><span>C) </span>undefined</button>
+          <button data-variant="D"><span>D) </span>null</button>
+        </div>
+        <button id="finishBtn" class="finishBtn">Natijamni bilish</button>
+      </div>
+
+
+    </div>
+
+    <!-- COMPUTER LITERACY QUESTIONS -->
+    <div class="course-questions" id="computerQuestions">
+      <div class="test" id="computer1">
+        <h3>Kompyuter ishga tushganda birinchi yuklanadigan dastur nima?</h3>
+        <div class="varianlar">
+          <button data-variant="A"><span>A) </span>Microsoft Word</button>
+          <button data-variant="B" data-correct="true"><span>B) </span>BIOS</button>
+          <button data-variant="C"><span>C) </span>Excel</button>
+          <button data-variant="D"><span>D) </span>Paint</button>
+        </div>
+        <button class="nextBtn">Keyingisi</button>
+      </div>
+
+      <div class="test" id="computer2">
+        <h3>Operatsion tizimning asosiy vazifasi nima?</h3>
+        <div class="varianlar">
+          <button data-variant="A"><span>A) </span>Matn yozish</button>
+          <button data-variant="B"><span>B) </span>Hisoblash</button>
+          <button data-variant="C" data-correct="true"><span>C) </span>Kompyuter resurslarini boshqarish</button>
+          <button data-variant="D"><span>D) </span>Video tahrirlash</button>
+        </div>
+        <button class="nextBtn">Keyingisi</button>
+      </div>
+
+      <div class="test" id="computer3">
+        <h3>Quyidagilardan qaysi biri operatsion tizim hisoblanadi?</h3>
+        <div class="varianlar">
+          <button data-variant="A"><span>A) </span>Google Chrome</button>
+          <button data-variant="B" data-correct="true"><span>B) </span>Windows 10</button>
+          <button data-variant="C"><span>C) </span>Adobe Photoshop</button>
+          <button data-variant="D"><span>D) </span>Microsoft Office</button>
+        </div>
+        <button class="nextBtn">Keyingisi</button>
+      </div>
+
+      <div class="test" id="computer4">
+        <h3>Faylni o‘chirishda u qayerga yuboriladi?</h3>
+        <div class="varianlar">
+          <button data-variant="A"><span>A) </span>My Documents</button>
+          <button data-variant="B"><span>B) </span>Desktop</button>
+          <button data-variant="C" data-correct="true"><span>C) </span>Recycle Bin</button>
+          <button data-variant="D"><span>D) </span>Control Panel</button>
+        </div>
+        <button class="nextBtn">Keyingisi</button>
+      </div>
+
+      <div class="test" id="computer5">
+        <h3>"File Explorer" yordamida nima qilinadi?</h3>
+        <div class="varianlar">
+          <button data-variant="A"><span>A) </span>Internetga ulaniladi</button>
+          <button data-variant="B" data-correct="true"><span>B) </span>Diskdagi fayllar ko‘riladi</button>
+          <button data-variant="C"><span>C) </span>Matn yoziladi</button>
+          <button data-variant="D"><span>D) </span>Video ko‘riladi</button>
+        </div>
+        <button class="nextBtn">Keyingisi</button>
+      </div>
+
+      <div class="test" id="computer6">
+        <h3>Windows-da papkani qanday yaratamiz?</h3>
+        <div class="varianlar">
+          <button data-variant="A"><span>A) </span>Delete tugmasi orqali</button>
+          <button data-variant="B"><span>B) </span>Ctrl + P yordamida</button>
+          <button data-variant="C" data-correct="true"><span>C) </span>O‘ng tugma → New → Folder</button>
+          <button data-variant="D"><span>D) </span>Alt + F4 yordamida</button>
+        </div>
+        <button class="nextBtn">Keyingisi</button>
+      </div>
+
+      <div class="test" id="computer7">
+        <h3>"Ctrl + Alt + Delete" tugmalari nima uchun ishlatiladi?</h3>
+        <div class="varianlar">
+          <button data-variant="A"><span>A) </span>Kompyuterni o‘chirish</button>
+          <button data-variant="B" data-correct="true"><span>B) </span>Vazifalar boshqaruvchisini ochish</button>
+          <button data-variant="C"><span>C) </span>Internetni ulash</button>
+          <button data-variant="D"><span>D) </span>Ekran rasmga olish</button>
+        </div>
+        <button class="nextBtn">Keyingisi</button>
+      </div>
+
+      <div class="test" id="computer8">
+        <h3>Kompyuterda papka ichida boshqa papka bo‘lishi mumkinmi?</h3>
+        <div class="varianlar">
+          <button data-variant="A"><span>A) </span>Yo‘q</button>
+          <button data-variant="B"><span>B) </span>Faqat bitta bo‘ladi</button>
+          <button data-variant="C" data-correct="true"><span>C) </span>Ha</button>
+          <button data-variant="D"><span>D) </span>Faqat C diskda bo‘ladi</button>
+        </div>
+        <button class="nextBtn">Keyingisi</button>
+      </div>
+
+      <div class="test" id="computer9">
+        <h3>Word dasturida yangi hujjatni qanday yaratamiz?</h3>
+        <div class="varianlar">
+          <button data-variant="A"><span>A) </span>Ctrl + S</button>
+          <button data-variant="B" data-correct="true"><span>B) </span>Ctrl + N</button>
+          <button data-variant="C"><span>C) </span>Ctrl + P</button>
+          <button data-variant="D"><span>D) </span>Ctrl + C</button>
+        </div>
+        <button class="nextBtn">Keyingisi</button>
+      </div>
+
+      <div class="test" id="computer10">
+        <h3>Matnni qalin qilish uchun qaysi tugma ishlatiladi?</h3>
+        <div class="varianlar">
+          <button data-variant="A"><span>A) </span>Ctrl + I</button>
+          <button data-variant="B" data-correct="true"><span>B) </span>Ctrl + B</button>
+          <button data-variant="C"><span>C) </span>Ctrl + U</button>
+          <button data-variant="D"><span>D) </span>Ctrl + C</button>
+        </div>
+        <button class="nextBtn">Keyingisi</button>
+      </div>
+
+      <div class="test" id="computer11">
+        <h3>Wordda matnni chapga tekislash uchun nima ishlatiladi?</h3>
+        <div class="varianlar">
+          <button data-variant="A"><span>A) </span>Ctrl + R</button>
+          <button data-variant="B"><span>B) </span>Ctrl + C</button>
+          <button data-variant="C" data-correct="true"><span>C) </span>Ctrl + L</button>
+          <button data-variant="D"><span>D) </span>Ctrl + E</button>
+        </div>
+        <button class="nextBtn">Keyingisi</button>
+      </div>
+
+      <div class="test" id="computer12">
+        <h3>Word faylining kengaytmasi qanday?</h3>
+        <div class="varianlar">
+          <button data-variant="A"><span>A) </span>.xls</button>
+          <button data-variant="B" data-correct="true"><span>B) </span>.docx</button>
+          <button data-variant="C"><span>C) </span>.ppt</button>
+          <button data-variant="D"><span>D) </span>.pdf</button>
+        </div>
+        <button class="nextBtn">Keyingisi</button>
+      </div>
+
+      <div class="test" id="computer13">
+        <h3>Wordda jadvalni qayerdan qo‘shamiz?</h3>
+        <div class="varianlar">
+          <button data-variant="A"><span>A) </span>Home → Table</button>
+          <button data-variant="B" data-correct="true"><span>B) </span>Insert → Table</button>
+          <button data-variant="C"><span>C) </span>View → Table</button>
+          <button data-variant="D"><span>D) </span>File → Table</button>
+        </div>
+        <button class="nextBtn">Keyingisi</button>
+      </div>
+
+      <div class="test" id="computer14">
+        <h3>Matnni nusxalash bu —</h3>
+        <div class="varianlar">
+          <button data-variant="A"><span>A) </span>Ctrl + V</button>
+          <button data-variant="B"><span>B) </span>Ctrl + X</button>
+          <button data-variant="C" data-correct="true"><span>C) </span>Ctrl + C</button>
+          <button data-variant="D"><span>D) </span>Ctrl + Z</button>
+        </div>
+        <button class="nextBtn">Keyingisi</button>
+      </div>
+
+      <div class="test" id="computer15">
+        <h3>Wordda sahifa raqami qayerga qo‘shiladi?</h3>
+        <div class="varianlar">
+          <button data-variant="A" data-correct="true"><span>A) </span>Insert → Page Number</button>
+          <button data-variant="B"><span>B) </span>View → Page Number</button>
+          <button data-variant="C"><span>C) </span>Design → Page</button>
+          <button data-variant="D"><span>D) </span>Layout → Number</button>
+        </div>
+        <button class="nextBtn">Keyingisi</button>
+      </div>
+
+      <div class="test" id="computer16">
+        <h3>Matnni o‘chirish uchun nima ishlatiladi?</h3>
+        <div class="varianlar">
+          <button data-variant="A"><span>A) </span>Tab</button>
+          <button data-variant="B"><span>B) </span>Esc</button>
+          <button data-variant="C" data-correct="true"><span>C) </span>Delete</button>
+          <button data-variant="D"><span>D) </span>F1</button>
+        </div>
+        <button class="nextBtn">Keyingisi</button>
+      </div>
+
+      <div class="test" id="computer17">
+        <h3>Excelda formula qaysi belgidan boshlanadi?</h3>
+        <div class="varianlar">
+          <button data-variant="A" data-correct="true"><span>A) </span>=</button>
+          <button data-variant="B"><span>B) </span>#</button>
+          <button data-variant="C"><span>C) </span>\$</button>
+          <button data-variant="D"><span>D) </span>+</button>
+        </div>
+        <button class="nextBtn">Keyingisi</button>
+      </div>
+
+      <div class="test" id="computer18">
+        <h3>A1 katakka 5, B1 katakka 3 yozilgan. =A1+B1 natijasi qancha?</h3>
+        <div class="varianlar">
+          <button data-variant="A"><span>A) </span>15</button>
+          <button data-variant="B"><span>B) </span>2</button>
+          <button data-variant="C" data-correct="true"><span>C) </span>8</button>
+          <button data-variant="D"><span>D) </span>53</button>
+        </div>
+        <button class="nextBtn">Keyingisi</button>
+      </div>
+
+      <div class="test" id="computer19">
+        <h3>Excelda ustunlar nima bilan belgilanadi?</h3>
+        <div class="varianlar">
+          <button data-variant="A"><span>A) </span>Raqamlar</button>
+          <button data-variant="B" data-correct="true"><span>B) </span>Harflar</button>
+          <button data-variant="C"><span>C) </span>Belgilar</button>
+          <button data-variant="D"><span>D) </span>Ranglar</button>
+        </div>
+        <button class="nextBtn">Keyingisi</button>
+      </div>
+
+      <div class="test" id="computer20">
+        <h3>SUM funksiyasi nima uchun ishlatiladi?</h3>
+        <div class="varianlar">
+          <button data-variant="A"><span>A) </span>Sonlarni ko‘paytirish</button>
+          <button data-variant="B"><span>B) </span>Jadval chizish</button>
+          <button data-variant="C" data-correct="true"><span>C) </span>Sonlarni qo‘shish</button>
+          <button data-variant="D"><span>D) </span>Sonlarni tahlil qilish</button>
+        </div>
+        <button class="nextBtn">Keyingisi</button>
+      </div>
+
+      <div class="test" id="computer21">
+        <h3>Qaysi funksiya eng kichik sonni topadi?</h3>
+        <div class="varianlar">
+          <button data-variant="A"><span>A) </span>SUM</button>
+          <button data-variant="B"><span>B) </span>MAX</button>
+          <button data-variant="C" data-correct="true"><span>C) </span>MIN</button>
+          <button data-variant="D"><span>D) </span>COUNT</button>
+        </div>
+        <button class="nextBtn">Keyingisi</button>
+      </div>
+
+      <div class="test" id="computer22">
+        <h3>Excelda =AVERAGE(A1:A5) nimani anglatadi?</h3>
+        <div class="varianlar">
+          <button data-variant="A"><span>A) </span>Eng katta qiymatni</button>
+          <button data-variant="B" data-correct="true"><span>B) </span>O‘rtacha qiymatni</button>
+          <button data-variant="C"><span>C) </span>Kataklar sonini</button>
+          <button data-variant="D"><span>D) </span>Qo‘shilgan qiymatni</button>
+        </div>
+        <button class="nextBtn">Keyingisi</button>
+      </div>
+
+      <div class="test" id="computer23">
+        <h3>Qaysi belgilar diapazonni bildiradi?</h3>
+        <div class="varianlar">
+          <button data-variant="A"><span>A) </span>+</button>
+          <button data-variant="B" data-correct="true"><span>B) </span>:</button>
+          <button data-variant="C"><span>C) </span>=</button>
+          <button data-variant="D"><span>D) </span>*</button>
+        </div>
+        <button class="nextBtn">Keyingisi</button>
+      </div>
+
+      <div class="test" id="computer24">
+        <h3>Excelda grafiklar qayerdan kiritiladi?</h3>
+        <div class="varianlar">
+          <button data-variant="A"><span>A) </span>Home → Chart</button>
+          <button data-variant="B" data-correct="true"><span>B) </span>Insert → Chart</button>
+          <button data-variant="C"><span>C) </span>Data → Chart</button>
+          <button data-variant="D"><span>D) </span>View → Chart</button>
+        </div>
+        <button class="nextBtn">Keyingisi</button>
+      </div>
+
+      <div class="test" id="computer25">
+        <h3>PowerPoint dasturi nima uchun ishlatiladi?</h3>
+        <div class="varianlar">
+          <button data-variant="A"><span>A) </span>Video montaj qilish uchun</button>
+          <button data-variant="B" data-correct="true"><span>B) </span>Prezentatsiya yaratish uchun</button>
+          <button data-variant="C"><span>C) </span>Hisob-kitob uchun</button>
+          <button data-variant="D"><span>D) </span>Veb-sahifa yaratish uchun</button>
+        </div>
+        <button class="nextBtn">Keyingisi</button>
+      </div>
+
+      <div class="test" id="computer26">
+        <h3>Slaydlar tartibi qaysi menyuda o‘zgaradi?</h3>
+        <div class="varianlar">
+          <button data-variant="A"><span>A) </span>View</button>
+          <button data-variant="B"><span>B) </span>Design</button>
+          <button data-variant="C" data-correct="true"><span>C) </span>Slide Sorter</button>
+          <button data-variant="D"><span>D) </span>File</button>
+        </div>
+        <button class="nextBtn">Keyingisi</button>
+
+      </div>
+
+      <div class="test" id="computer27">
+        <h3>Prezentatsiyani qanday ishga tushiramiz?</h3>
+        <div class="varianlar">
+          <button data-variant="A" data-correct="true"><span>A) </span>F5 tugmasi orqali</button>
+          <button data-variant="B"><span>B) </span>Ctrl + P</button>
+          <button data-variant="C"><span>C) </span>Alt + F4</button>
+          <button data-variant="D"><span>D) </span>Esc</button>
+        </div>
+        <button class="nextBtn">Keyingisi</button>
+      </div>
+
+      <div class="test" id="computer28">
+        <h3>PowerPointda animatsiya qo‘shish menyusi qaysi?</h3>
+        <div class="varianlar">
+          <button data-variant="A"><span>A) </span>File</button>
+          <button data-variant="B"><span>B) </span>Design</button>
+          <button data-variant="C" data-correct="true"><span>C) </span>Animations</button>
+          <button data-variant="D"><span>D) </span>Insert</button>
+        </div>
+        <button class="nextBtn">Keyingisi</button>
+      </div>
+
+      <div class="test" id="computer29">
+        <h3>Slaydga rasmni qayerdan qo‘shamiz?</h3>
+        <div class="varianlar">
+          <button data-variant="A"><span>A) </span>Design</button>
+          <button data-variant="B" data-correct="true"><span>B) </span>Insert</button>
+          <button data-variant="C"><span>C) </span>View</button>
+          <button data-variant="D"><span>D) </span>Slide Show</button>
+        </div>
+        <button class="nextBtn">Keyingisi</button>
+      </div>
+
+      <div class="test" id="computer30">
+        <h3>Prezentatsiya faylining kengaytmasi qanday?</h3>
+        <div class="varianlar">
+          <button data-variant="A"><span>A) </span>.docx</button>
+          <button data-variant="B"><span>B) </span>.xlsx</button>
+          <button data-variant="C" data-correct="true"><span>C) </span>.pptx</button>
+          <button data-variant="D"><span>D) </span>.pdf</button>
+        </div>
+        <button id="finishBtn" class="finishBtn">Natijamni bilish</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LAST RESULT -->
+  <div class="last-result" id="lastResult">
+    <h3>Oxirgi natija:</h3>
+    <div id="lastResultContent"></div>
+  </div>
+
+  <script src="index.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+</body>
+
+</html>
